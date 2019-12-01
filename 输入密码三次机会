@@ -14,7 +14,7 @@ if(strcmp(a,"888888")==0)
 printf("密码错误\n"); 
 
 }
-if(i==3){printf("三次了"); 
+if(i==2){printf("三次了"); 
 }
 
 }
