@@ -52,8 +52,10 @@ return ' ';
 }
 void print (char qipan[max_heng][max_lie])
 {for(int heng=0;heng<max_heng;heng++)
+
 {for(int lie=0;lie<max_lie;lie++)
-{printf("%c ",qipan[heng][lie]);
+{
+printf("|%c |",qipan[heng][lie]);
 }printf("\n");
 }
 }
@@ -136,7 +138,11 @@ int menu()
  } 
  
 int main()
-{int choice=menu();
+{
+	while(1)
+	{
+	
+int choice=menu();
 if (choice==1)
 {game();
 }
@@ -146,6 +152,6 @@ return 0;
 }
 else 
 {printf("ÄúµÄÊäÈëÓÐÎó");
-menu();
 } 
+}
 }
