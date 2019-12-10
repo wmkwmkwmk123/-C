@@ -69,6 +69,7 @@ char minemap[max_heng]p4[max_lie];
  {printf("游戏结束");
   break;
  }
+ //所有格子走完胜利 
  //没有踩雷显示数字 
 }
 }
