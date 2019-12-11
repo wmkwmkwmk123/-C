@@ -3,12 +3,13 @@
 #include<time.h>
 #define max_heng 8
 #define max_lie 8 
+#define boomnum 10
 char jianli(char showmap[max_heng][max_lie],int minemap[max_heng][max_lie])
 {int heng;
 int lie;
 for(heng=0;heng<max_heng;heng++)
 {for(lie=0;lie<max_lie;lie++)
-{showmap[heng][lie]='* ';
+{showmap[heng][lie]='*';
 }
 
 }
@@ -27,7 +28,7 @@ if(minemap[heng][lie]!=0)
 minemap[heng][lie]=1;
 boom--;
 }
-
+}
 void print(char showmap[max_heng][max_lie])
 {
 for(int heng=0;heng<max_heng;heng++)
@@ -37,39 +38,61 @@ for(int heng=0;heng<max_heng;heng++)
 }
 }
 void player(char showmap[max_heng][max_lie],int* heng,int* lie)
-{int heng=0;
-int lie=0;
+{
 while (1)
 {
-scanf("%d %d",&heng,&lie)
-if(heng<0||heng>=max_heng||lie<0||lie>=max_lie)
-{printf("您的代码有误，请重新输入\n");
+	printf("请输入您要翻开的位置\n"); 
+scanf("%d %d",heng,lie);
+if(*heng<0||*heng>=max_heng||*lie<0||*lie>=max_lie)
+{printf("您的位置有误，请重新输入\n");
 continue;
 }
-else if (showmap[heng][lie]!='*')
-{printf("这个位置翻开了");
+if (showmap[*heng][*lie]!='*')
+{printf("这个位置翻开了\n");
 continue;
 }
 break;
 }
 }
+void update(char showmap[max_heng][max_lie],int minemap[max_heng][max_lie],int heng,int lie)
+{
+int nearboom=0;
+for (int h=heng-1;h<=heng+1;h++)
+{for (int l=lie-1;l<=lie+1;l++)
+{if(h<0||h>=max_heng||l<0||l>=max_lie)
+{continue;
+}
+else if(minemap[h][l]=='1')
+{nearboom++;
+}
+}
+}
+showmap[heng][lie]=nearboom+'0';
+}
 void game()
 {//建立地图 设置地雷  打印地图 
 char showmap[max_heng][max_lie];
-char minemap[max_heng]p4[max_lie];
+int minemap[max_heng][max_lie];
  jianli (showmap,minemap);
+ int notboom=0;
  while(1)
  {
  print (showmap);
  //玩家输入 是否踩雷 
- int heng=0;
+ int heng=0; 
  int lie=0;
  player (showmap,&heng,&lie);
  if (minemap[heng][lie]==1)
- {printf("游戏结束");
+ {printf("游戏结束\n");
   break;
+ }//所有格子走完胜利 
+ notboom++;
+ if(notboom==max_heng*max_lie-boomnum)
+ {printf("你赢了\n");
+ break;
  }
- //所有格子走完胜利 
+ update(showmap,minemap,heng,lie);
+ 
  //没有踩雷显示数字 
 }
 }
