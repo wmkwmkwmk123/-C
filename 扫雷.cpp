@@ -4,7 +4,7 @@
 #define max_heng 8
 #define max_lie 8 
 #define boomnum 10
-char jianli(char showmap[max_heng][max_lie],int minemap[max_heng][max_lie])
+void jianli(char showmap[max_heng][max_lie],int minemap[max_heng][max_lie])
 {int heng;
 int lie;
 for(heng=0;heng<max_heng;heng++)
@@ -59,10 +59,10 @@ void update(char showmap[max_heng][max_lie],int minemap[max_heng][max_lie],int h
 int nearboom=0;
 for (int h=heng-1;h<=heng+1;h++)
 {for (int l=lie-1;l<=lie+1;l++)
-{if(h<0||h>=max_heng||l<0||l>=max_lie)
+{if(heng<0||heng>=max_heng||lie<0||lie>=max_lie)
 {continue;
 }
-else if(minemap[h][l]=='1')
+if(minemap[h][l]=='1')
 {nearboom++;
 }
 }
@@ -89,6 +89,7 @@ int minemap[max_heng][max_lie];
  notboom++;
  if(notboom==max_heng*max_lie-boomnum)
  {printf("ƒ„”Æ¡À\n");
+
  break;
  }
  update(showmap,minemap,heng,lie);
