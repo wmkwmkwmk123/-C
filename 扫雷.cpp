@@ -19,8 +19,10 @@ for(heng=0;heng<max_heng;heng++)
 }
 }
 int boom=10;
+srand((unsigned int)time(0));
 while(boom>0)
-{heng=rand()%max_heng;
+{
+heng=rand()%max_heng;
 lie=rand()%max_lie;
 if(minemap[heng][lie]!=0)
 {continue;
@@ -57,15 +59,23 @@ break;
 void update(char showmap[max_heng][max_lie],int minemap[max_heng][max_lie],int heng,int lie)
 {
 int nearboom=0;
-for (int h=heng-1;h<=heng+1;h++)
-{for (int l=lie-1;l<=lie+1;l++)
-{if(heng<0||heng>=max_heng||lie<0||lie>=max_lie)
-{continue;
-}
-if(minemap[h][l]=='1')
-{nearboom++;
-}
-}
+{ 
+if (minemap[heng - 1][lie - 1] == '1')
+        nearboom++;
+    if (minemap[heng - 1][lie] == '1')
+        nearboom++;    
+    if (minemap[heng - 1][lie + 1] == '1')
+        nearboom++;
+    if (minemap[heng][lie - 1] == '1')
+        nearboom++;    
+    if (minemap[heng][lie + 1] == '1')
+        nearboom++;    
+    if (minemap[heng + 1][lie - 1] == '1')
+        nearboom++;    
+    if (minemap[heng + 1][lie] == '1')
+        nearboom++;    
+    if (minemap[heng + 1][lie + 1] == '1')
+        nearboom++;
 }
 showmap[heng][lie]=nearboom+'0';
 }
