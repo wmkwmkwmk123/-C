@@ -3,7 +3,7 @@
 #include<time.h>
 #define max_heng 8
 #define max_lie 8 
-#define boomnum 10
+#define boomnum 10//存在的问题是算不出9*9内有几个雷 
 void jianli(char showmap[max_heng][max_lie],int minemap[max_heng][max_lie])
 {int heng;
 int lie;
@@ -32,10 +32,15 @@ boom--;
 }
 }
 void print(char showmap[max_heng][max_lie])
-{
+{int sum=0;
+	printf("-|012345678\n");
 for(int heng=0;heng<max_heng;heng++)
-{for(int lie=0;lie<max_lie;lie++)
-{printf("%c",showmap[heng][lie]);
+{printf("%d|",sum);
+sum=sum+1;
+for(int lie=0;lie<max_lie;lie++)
+{
+
+printf("%c",showmap[heng][lie]);
 }printf("\n");
 }
 }
