@@ -15,5 +15,6 @@ return 0;
  printf("%d\n",p);
  printf("%d\n",*q);
  printf("%p",p) ;
+ printf("%d"£¬sizeof(p));
  return 0;
  }
